@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Character from "./components/Character"
 import './App.css';
 import axios from 'axios';
+import styled from 'styled-components'
 
+const HeadStyle = styled.h1`
+text-align: center;
 
-
+`
+const CharacterStyle = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
 
 const App = () => {
   
@@ -15,7 +23,7 @@ const App = () => {
     }
   ])
 
-  useState(() => {
+  useEffect(() => {
 
     axios.get('https://rickandmortyapi.com/api/character')
     .then((info) => {
@@ -35,14 +43,17 @@ const App = () => {
   // sync up with, if any.
 
   return (
-    <div className="App">
-      <h1 className="Header">Characters</h1>
+     <div>
+      < HeadStyle className="Header">Rick and Morty</ HeadStyle>
+      
+    <CharacterStyle className="App">
       {
         characters.map((character, index) => (
           <Character key= {`app-character-map-${index}`} character={character} />
         ))
         }
 
+    </CharacterStyle>
     </div>
   );
 }
