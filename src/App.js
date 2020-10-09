@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Character from "./components/Character"
 import './App.css';
+import axios from 'axios';
+
+
+
 
 const App = () => {
+  
+  const [characters, setCharacters] = useState([
+    {
+      image: "https://rickandmortyapi.com/api/character/avatar/6.jpeg",
+      name: "Abandango Cluster"
+    }
+  ])
+
+  useState(() => {
+
+    axios.get('https://rickandmortyapi.com/api/character')
+    .then((info) => {
+      console.log(info)
+      setCharacters(info.data.results)
+    })
+    .catch((err) =>{
+      console.log("there is an error", err)
+    })
+  }, [])
+
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
 
@@ -12,6 +37,12 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
+      {
+        characters.map((character, index) => (
+          <Character key= {`app-character-map-${index}`} character={character} />
+        ))
+        }
+
     </div>
   );
 }
