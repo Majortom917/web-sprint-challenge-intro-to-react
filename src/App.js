@@ -12,6 +12,7 @@ const CharacterStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  
 `;
 
 const App = () => {

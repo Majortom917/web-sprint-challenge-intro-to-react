@@ -1,10 +1,12 @@
 // Write your Character component here
 import React from "react";
-import axios from "axios";
 import styled from 'styled-components'
 
 const StatusStyle= styled.div`
 background-color: grey;
+border: solid black;
+border-radius: 15px;
+padding:.5rem;
 color: red;
 font-size:1.5rem;
 font-weight: bold;
@@ -25,7 +27,7 @@ const Character = (props) => {
     return(
         <div>
             <img src={props.character.image} alt={props.character.name} />
-            <StatusStyle> {props.character.status} 
+            <StatusStyle> Species: {props.character.species}... Status:{props.character.status} 
             </StatusStyle>
             </div>
     )
